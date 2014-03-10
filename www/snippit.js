@@ -1,3 +1,8 @@
+//    <uses-permission android:name="android.permission.INTERNET" />
+//    <uses-permission android:name="android.permission.CALL_PHONE" />
+//    <uses-permission android:name="android.permission.SEND_SMS" />
+//    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
 var snippit = {
 	
     createEcho: function (valToEcho, successCallback, errorCallback) {
