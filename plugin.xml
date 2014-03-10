@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+           id="org.gusmano.snippit"
+      version="0.1.0">
+    <name>Snippit</name>
+    <description>Sample Cordova Snippit Plugin</description>
+    <license>MIT</license>
+    <keywords>cordova,snippit</keywords>
+ 
+ 
+    <js-module src="www/snippit.js" name="Snippit">
+        <clobbers target="window.snippit" />
+    </js-module>
+ 
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Snippit">
+                <param name="android-package" value="org.gusmano.snippit.Snippit"/>
+            </feature>
+        </config-file>
+ 
+        <source-file src="src/android/Snippit.java" target-dir="src/org/gusmano/snippit" />      
+     </platform>          
+</plugin>
