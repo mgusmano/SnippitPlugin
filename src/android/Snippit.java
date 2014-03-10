@@ -1,27 +1,26 @@
 package org.gusmano.snippit;
 
 import java.lang.reflect.Method;
-
 import org.apache.cordova.CallbackContext;
-//import org.apache.cordova.CordovaActivity;
 import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaWebView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-
 import android.R;
-//import android.R;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
-//import android.app.Activity;
-//import android.app.NotificationManager;
 import android.content.Context;
 import android.net.Uri;
+import android.provider.MediaStore.Audio;
+import android.telephony.SmsManager;
+
+//import org.apache.cordova.CordovaActivity;
+//import android.app.Activity;
+//import android.app.NotificationManager;
 //import android.net.Uri;
 //import android.os.Bundle;
 //import android.provider.MediaStore.Audio;
@@ -29,19 +28,14 @@ import android.net.Uri;
 //import android.view.MenuInflater;
 //import android.view.View;
 //import android.widget.EditText;
-
-//import com.gusmano.TouchApp4
-
 //import android.content.Context;
 //import android.content.IntentFilter;
-import android.provider.MediaStore.Audio;
 //import android.provider.Settings;
 //import android.telephony.TelephonyManager;
 //import android.util.Log;
-import android.telephony.SmsManager;
 
 public class Snippit extends CordovaPlugin {
-    public static final String TAG = "Echo";
+    //public static final String TAG = "Echo";
 
     //public static String cordovaVersion = "dev";              // Cordova version
     //public static String platform = "Android";                  // Echo OS
@@ -135,60 +129,29 @@ public class Snippit extends CordovaPlugin {
     	else if (action.equals("showSplash")) {
     		this.webView.postMessage("splashscreen", "show");    		
 		}    	
-		else if (action.equals("sendSMS")) {
+    	else if (action.equals("sendSMS")) {
             JSONObject arg_object = args.getJSONObject(0);
-			String phoneNumber = arg_object.getString("phoneNumber");
-			String message = arg_object.getString("message");
-//	        Uri smsUri = Uri.parse("smsto:1-" + phoneNumber);
-//	        Intent sendIntent = new Intent(Intent.ACTION_SENDTO, smsUri);
-//	        sendIntent.putExtra("sms_body", message);
-//	        //sendIntent.setType("vnd.android-dir/mms-sms");
-//	        cordova.getActivity().startActivity(sendIntent);	
-	        SmsManager smsManager = SmsManager.getDefault();
-	        smsManager.sendTextMessage("+1-" + phoneNumber, null, message, null, null);	        
-		}    	
-		else if (action.equals("makeCall")) {
-             JSONObject arg_object = args.getJSONObject(0);
-			 String phoneNumber = arg_object.getString("phoneNumber");
-			 String uri = "tel:" + phoneNumber.trim() ;
-			 Intent intent = new Intent(Intent.ACTION_CALL);
-			 intent.setData(Uri.parse(uri));
-			 cordova.getActivity().startActivity(intent);	
-		}    	
-		else if (action.equals("sayHi")) {
-		}    	
-		else if (action.equals("sayHi")) {
-		}    	
-		else if (action.equals("sayHi")) {
-		}    	
-
-    	
-    	
-    	
+            String phoneNumber = arg_object.getString("phoneNumber");
+            String message = arg_object.getString("message");
+//            Uri smsUri = Uri.parse("smsto:1-" + phoneNumber);
+//            Intent sendIntent = new Intent(Intent.ACTION_SENDTO, smsUri);
+//            sendIntent.putExtra("sms_body", message);
+//            //sendIntent.setType("vnd.android-dir/mms-sms");
+//            cordova.getActivity().startActivity(sendIntent);	
+            SmsManager smsManager = SmsManager.getDefault();
+            smsManager.sendTextMessage("+1-" + phoneNumber, null, message, null, null);	        
+    	}    	
+    	else if (action.equals("makeCall")) {
+            JSONObject arg_object = args.getJSONObject(0);
+            String phoneNumber = arg_object.getString("phoneNumber");
+            String uri = "tel:" + phoneNumber.trim() ;
+            Intent intent = new Intent(Intent.ACTION_CALL);
+            intent.setData(Uri.parse(uri));
+            cordova.getActivity().startActivity(intent);	
+    	}    	
     	else {
-    	    return false;
+            return false;
     	}
-
-    
-//        if (action.equals("echo")) {
-//            JSONObject arg_object = args.getJSONObject(0);
-//            //arg_object.getString("title")
-//            JSONObject r = new JSONObject();
-//            r.put("test", arg_object.getString("theVal"));
-//            r.put("test2", "src"); 
-//
-//            //Context context=this.cordova.getActivity().getApplicationContext();
-//
-//          
-//            
-//  
-//            
-//            callbackContext.success(r);
-//        }
-//        else {
-//            return false;
-//        }
-       return true;
+    	return true;
     }
- 
 }
